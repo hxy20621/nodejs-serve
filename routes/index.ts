@@ -4,9 +4,6 @@ import apiExample from './apiExample';
 import signIn from './signIn';
 import sendVerificationCode from './sendVerificationCode';
 
-
-
-
 router.use(apiExample);
 
 router.use(signIn);
