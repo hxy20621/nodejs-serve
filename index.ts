@@ -1,8 +1,8 @@
-import {dbUrl} from './config'
+// import {dbUrl} from './config'
 import {RequestHandler, Request, Response, NextFunction} from 'express-serve-static-core';
 import express = require('express');
 import fileUpload = require('express-fileupload');
-import socket = require('socket.io')
+// import socket = require('socket.io')
 
 
 import {json} from 'body-parser';
