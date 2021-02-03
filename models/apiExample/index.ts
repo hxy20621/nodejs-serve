@@ -7,4 +7,3 @@ conn.query('SELECT 1 + 1 AS solution', function (error: MysqlError, results: any
   conn.end()
 })
 
-
