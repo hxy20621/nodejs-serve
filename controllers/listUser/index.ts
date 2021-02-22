@@ -1,11 +1,19 @@
 import {RequestHandler, Request, Response, NextFunction} from 'express-serve-static-core';
 import conn from './../../models';
-import {MysqlError, FieldInfo} from 'mysql';
-
+import {MysqlError, FieldInfo, escape} from 'mysql';
+import isNumber from "../../util/isNumber";
 const List: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     const listArray: object = [];
     let {pageNo = 1, pageSize = 10} = req.body;
-    pageNo = pageNo - 1;
+    pageSize = {}
+    if(!isNumber(pageSize)){
+        res.send({
+            status: 200,
+            message: "error"
+        })
+    }
+    pageNo = escape(pageNo - 1);
+    pageSize = escape(pageSize)
     let sql = `select * from test where id > ${pageNo}*${pageSize} limit ${pageSize}`;
     // `select * from test`
 

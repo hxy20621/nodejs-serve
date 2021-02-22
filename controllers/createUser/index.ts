@@ -1,6 +1,6 @@
 import {RequestHandler, Request, Response, NextFunction} from 'express-serve-static-core';
 import conn from './../../models';
-import {MysqlError, FieldInfo} from 'mysql';
+import {MysqlError, FieldInfo, escape } from 'mysql';
 
 /**
  *
@@ -23,8 +23,8 @@ import {MysqlError, FieldInfo} from 'mysql';
 const CreateUser: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     let body = req.body;
 
-    let title:string = body.title;
-    let author:string = body.author;
+    let title:string = escape(body.title);
+    let author:string = escape(body.author);
     let date = new Date();
 
     const sql = `INSERT INTO test (title, author, date) VALUES(?, ?, ?)`;
