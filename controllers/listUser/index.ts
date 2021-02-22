@@ -2,10 +2,13 @@ import {RequestHandler, Request, Response, NextFunction} from 'express-serve-sta
 import conn from './../../models';
 import {MysqlError, FieldInfo, escape} from 'mysql';
 import isNumber from "../../util/isNumber";
+import toNumber from "../../util/toNumber";
 const List: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
-    const listArray: object = [];
     let {pageNo = 1, pageSize = 10} = req.body;
-    pageSize = {}
+
+    pageSize = toNumber(pageSize);
+    pageNo = toNumber(pageNo);
+
     if(!isNumber(pageSize)){
         res.send({
             status: 200,
